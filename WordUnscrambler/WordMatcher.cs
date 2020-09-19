@@ -50,7 +50,7 @@ namespace WordUnscrambler
 
                         //compare the two strings
                         //if they are equal, add to matchedWords list
-                        if (scrambledOrdered.Equals(wordOrdered))
+                        if (scrambledOrdered.Equals(wordOrdered, StringComparison.OrdinalIgnoreCase))
                         {
                             matchedWords.Add(BuildMatchedWord(scrambledWord, word));
                         }
