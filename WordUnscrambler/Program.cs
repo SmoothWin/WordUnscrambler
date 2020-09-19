@@ -9,7 +9,7 @@ namespace WordUnscrambler
     class Program
     {
         private static readonly FileReader _fileReader = new FileReader();
-        private static readonly WordMatcher _wordMAtcher = new WordMatcher();
+        private static readonly WordMatcher _wordMatcher = new WordMatcher();
 
 
         static void Main(string[] args)
@@ -75,7 +75,7 @@ namespace WordUnscrambler
             string[] wordList = _fileReader.Read("wordList.txt");
 
             //call a word matcher method, to get a list of MatchedWord structs
-            List<MatchedWord> matchedWords = _wordMAtcher.Match(scrambledWords, wordList);
+            List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
 
             //display the match - print to console
             if (matchedWords.Any())
