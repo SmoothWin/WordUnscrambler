@@ -25,19 +25,36 @@ namespace WordUnscrambler
                     else
                     {
                         //convert strings into character arrays
-                        char[] scrambledWordArray = word.ToCharArray();
-
-
-
+                        char[] scrambledWordArray = scrambledWord.ToCharArray();
+                        char[] wordArray = word.ToCharArray();
 
                         //sort both character arrays (Array.sort())
                         //act -> sort -> act
                         //cat -> sort -> act
+                        Array.Sort(scrambledWordArray);
+                        Array.Sort(wordArray);
 
                         //convert char arrays back to strings
+                        string scrambledOrdered = "";
+
+                        foreach (var chr in scrambledWordArray)
+                        {
+                            scrambledOrdered += chr.ToString(); 
+                        }
+
+                        string wordOrdered = "";
+                        foreach(var chr in wordArray)
+                        {
+                            wordOrdered += chr.ToString();
+                        }
 
                         //compare the two strings
                         //if they are equal, add to matchedWords list
+                        if (scrambledOrdered.Equals(wordOrdered))
+                        {
+                            matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                        }
+
                     }
 
 
