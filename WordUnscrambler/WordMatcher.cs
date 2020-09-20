@@ -12,6 +12,11 @@ namespace WordUnscrambler
         {
             List<MatchedWord> matchedWords = new List<MatchedWord>();
 
+            // if statement for when the file path is invalid
+            if(scrambledWords == null)
+            {
+                return null;
+            }
             foreach(var scrambledWord in scrambledWords)
             {
                 foreach(var word in wordList)

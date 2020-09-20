@@ -27,9 +27,10 @@ namespace WordUnscrambler
             }
             catch(Exception ex)
             {
-                Console.Write(ex.Message);
+                Console.WriteLine(ex.Message);
+                return null;
             }
-            return null;
+            
 
         }
     }
