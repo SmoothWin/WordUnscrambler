@@ -23,28 +23,28 @@ namespace WordUnscrambler
                 do
                 {
                     
-                    Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                    Console.WriteLine(Constants.enter_scrambled_words);
 
-                    String option = Console.ReadLine().Trim() ?? throw new Exception("String is empty/null");
+                    String option = Console.ReadLine().Trim() ?? throw new Exception(Constants.string_empty);
 
                     switch (option.ToUpper())
                     {
                         case "F":
-                            Console.WriteLine("Enter full path including the file name: ");
+                            Console.WriteLine(Constants.enter_full_path);
                             ExecuteScrambledWordsInFileScenario();
                             break;
                         case "M":
-                            Console.WriteLine("Enter word(s) manually (seperated by commas if multiple)");
+                            Console.WriteLine(Constants.enter_words);
                             ExecuteScrambledWordsManualEntryScenario();
                             break;
                         default:
-                            Console.WriteLine("The entered option was not recognized");
+                            Console.WriteLine(Constants.enter_NotRecognized);
                             continue;
                     }
                     bool status2 = false; //to exit the next loop (loop validation)
                     do {
-                        Console.WriteLine("Would you like to continue Y/N?");
-                        String yesNo = Console.ReadLine().Trim() ?? throw new Exception("String is empty/null");
+                        Console.WriteLine(Constants.would_continueYN);
+                        String yesNo = Console.ReadLine().Trim() ?? throw new Exception(Constants.string_empty);
                         switch (yesNo.ToUpper())
                         {
                             case "Y":
@@ -58,7 +58,7 @@ namespace WordUnscrambler
                                 status2 = true;
                                 break;
                             default:
-                                Console.WriteLine("The entered option was not recognized");
+                                Console.WriteLine(Constants.post_enter_recognition);
                                 continue;
                         }
                     } while (!status2);
@@ -67,7 +67,7 @@ namespace WordUnscrambler
 
             }
             catch(Exception ex){
-                Console.WriteLine("The program will be terminated" + ex.Message);
+                Console.WriteLine(Constants.program_termination + ex.Message);
             }
         }
 
@@ -111,7 +111,7 @@ namespace WordUnscrambler
             //if statement Console output for when the file path is not valid
             if(matchedWords == null)
             {
-                Console.WriteLine("File path is not valid");
+                Console.WriteLine(Constants.file_path_invalid);
             }
             else if (matchedWords.Any())
             {
@@ -120,7 +120,7 @@ namespace WordUnscrambler
                 {
                     //write console
                     //MATCHED FOUND FOR "act": "cat"
-                    Console.WriteLine("MATCH FOUND FOR \"{0}\": \"{1}\"", matchedWord.ScrambledWord, matchedWord.Word);
+                    Console.WriteLine(Constants.match_found, matchedWord.ScrambledWord, matchedWord.Word);
                 }
                 
 
@@ -128,7 +128,7 @@ namespace WordUnscrambler
             else
             {
                 //NO MATCHES HAVE BEEN FOUND
-                Console.WriteLine("NO MATCHES HAVE BEEN FOUND");
+                Console.WriteLine(Constants.no_match_found);
             }
         }
     }
