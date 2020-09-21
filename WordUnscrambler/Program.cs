@@ -19,10 +19,10 @@ namespace WordUnscrambler
             try
             {
                 bool status = false;
-                
+
                 do
                 {
-                    
+
                     Console.WriteLine(Constants.enter_scrambled_words);
 
                     String option = Console.ReadLine().Trim() ?? throw new Exception(Constants.string_empty);
@@ -41,8 +41,9 @@ namespace WordUnscrambler
                             Console.WriteLine(Constants.enter_NotRecognized);
                             continue;
                     }
-                    bool status2 = false; //to exit the next loop (loop validation)
-                    do {
+                    bool status2 = false;
+                    do
+                    {
                         Console.WriteLine(Constants.would_continueYN);
                         String yesNo = Console.ReadLine().Trim() ?? throw new Exception(Constants.string_empty);
                         switch (yesNo.ToUpper())
@@ -62,72 +63,58 @@ namespace WordUnscrambler
                                 continue;
                         }
                     } while (!status2);
-                    
+
                 } while (!status);
 
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 Console.WriteLine(Constants.program_termination + ex.Message);
             }
         }
 
         private static void ExecuteScrambledWordsManualEntryScenario()
         {
-            //get user's input - a comma separated string containing scrambled words
             string manualInput = Console.ReadLine();
-            //exract the words into a string[] - use Split()
-            char[] separators = { ',', ' '};
+            char[] separators = { ',', ' ' };
             string[] scrambledWords = manualInput.Split(separators);
 
-            //display matched words
             DisplayMatchedUnscrambledWords(scrambledWords);
 
         }
 
         private static void ExecuteScrambledWordsInFileScenario()
         {
-                //user input for scrambled words
-                string filename = Console.ReadLine();
+            string filename = Console.ReadLine();
 
 
-                //read words from file and store in string[]
-                string[] scrambledWords = _fileReader.Read(filename);
+            string[] scrambledWords = _fileReader.Read(filename);
 
-                //display matched words
-                DisplayMatchedUnscrambledWords(scrambledWords);
+            DisplayMatchedUnscrambledWords(scrambledWords);
 
         }
 
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
         {
-            //read the list of words in the wordlist.txt file (unscrambled words)
             string[] wordList = _fileReader.Read("wordList.txt");
 
-            //call a word matcher method, to get a list of MatchedWord structs
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
 
-            //display the match - print to console
-
-            //if statement Console output for when the file path is not valid
-            if(matchedWords == null)
+            if (matchedWords == null)
             {
                 Console.WriteLine(Constants.file_path_invalid);
             }
             else if (matchedWords.Any())
             {
-                //loop through matchedWords and print to console contents of the structs
-                foreach(var matchedWord in matchedWords)
+                foreach (var matchedWord in matchedWords)
                 {
-                    //write console
-                    //MATCHED FOUND FOR "act": "cat"
                     Console.WriteLine(Constants.match_found, matchedWord.ScrambledWord, matchedWord.Word);
                 }
-                
+
 
             }
             else
             {
-                //NO MATCHES HAVE BEEN FOUND
                 Console.WriteLine(Constants.no_match_found);
             }
         }

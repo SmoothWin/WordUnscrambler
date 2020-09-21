@@ -11,13 +11,6 @@ namespace WordUnscrambler
     {
         public string[] Read(string fullname)
         {
-            //declare string[] hold content of file
-
-            //try/catch
-
-            //read from file - ReadAllLines()
-
-            //return file contents.which string[]
             try
             {
                 string[] fileContent = File.ReadAllLines(fullname);
@@ -25,12 +18,12 @@ namespace WordUnscrambler
                 return fileContent;
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return null;
             }
-            
+
 
         }
     }
