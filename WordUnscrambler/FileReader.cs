@@ -11,9 +11,10 @@ namespace WordUnscrambler
     {
         public string[] Read(string fullname)
         {
+            string[] fileContent;
             try
             {
-                string[] fileContent = File.ReadAllLines(fullname);
+                fileContent = File.ReadAllLines(fullname);
 
                 return fileContent;
 
